@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machine Price Prediction</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color:#000000d0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color:#fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+      text-align: center;
+    }
+        .form-control {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .btn-primary {
+            width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+        }
+        .btn:hover {
+      background-color: #45a049;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Machine Price Prediction</h1>
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <h2>Price prediction for Auctions</h2>
+            <div class="mb-3">
+                <label class="form-label">Year Made</label>
+                <input class="form-control" type="number" name="YearMade" placeholder="Enter Year Made" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Secondary Description</label>
+                <input class="form-control" type="text" name="fiSecondaryDesc" placeholder="Enter Secondary Description" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Class Description</label>
+                <input class="form-control" type="text" name="fiProductClassDesc" placeholder="Enter Product Class Description" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sale Date</label>
+                <input class="form-control" type="date" name="saledate" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Model ID</label>
+                <input class="form-control" type="number" name="ModelID" placeholder="Enter Model ID" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Track Type</label>
+                <select class="form-control" name="Track_Type" required>
+                    <option value="steel">Steel</option>
+                    <option value="rubber">Rubber</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Model Description</label>
+                <input class="form-control" type="text" name="fiModelDesc" placeholder="Enter Model Description" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enclosure</label>
+                <select class="form-control" name="Enclosure" required>
+                    <option value="EROPS w AC">EROPS w AC</option>
+                    <option value="OROPS">OROPS</option>
+                    <option value="EROPS">EROPS</option>
+                    <option value="EROPS AC">EROPS AC</option>
+                    <option value="NO ROPS">NO ROPS</option>
+                    <option value="None or Unspecified">None or Unspecified</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sales ID</label>
+                <input class="form-control" type="number" name="SalesID" placeholder="Enter Sales ID" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Product Size</label>
+                <select class="form-control" name="ProductSize" required>
+                    <option value="Medium">Medium</option>
+                    <option value="Small">Small</option>
+                    <option value="Large / Medium">Large / Medium</option>
+                    <option value="Mini">Mini</option>
+                    <option value="Large">Large</option>
+                    <option value="Compact">Compact</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tire Size</label>
+                <select class="form-control" name="Tire_Size" required>
+                    <option value="None or Unspecified">None or Unspecified</option>
+                    <option value="23.5">23.5</option>
+                    <option value="13&quot;">13"</option>
+                    <!-- Add more options here -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Machine ID</label>
+                <input class="form-control" type="number" name="MachineID" placeholder="Enter Machine ID" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Base Model</label>
+                <input class="form-control" type="text" name="fiBaseModel" placeholder="Enter Base Model" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Coupler System</label>
+                <select class="form-control" name="Coupler_System" required>
+                    <option value="None or Unspecified">None or Unspecified</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">State</label>
+                <select class="form-control" name="state" required>
+                    <option value="Alabama">Alabama</option>
+                    <option value="North Carolina">North Carolina</option>
+                    <!-- Add more options here -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ripper</label>
+                <select class="form-control" name="Ripper" required>
+                    <option value="None or Unspecified">None or Unspecified</option>
+                    <option value="Yes">Yes</option>
+                    <!-- Add more options here -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Transmission</label>
+                <select class="form-control" name="Transmission" required>
+                    <option value="Powershuttle">Powershuttle</option>
+                    <option value="Standard">Standard</option>
+                    <!-- Add more options here -->
+                </select>
+            </div>
+            <!-- Add more input fields and select dropdowns here -->
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict Machine Performance" />
+            </div>
+        </form>
+        <h2>
+            The prediction is {{results}}
+        </h2>
+    </div>
+</body>
+</html>
